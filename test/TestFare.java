@@ -7,17 +7,24 @@ import org.testng.Assert;
 public class TestFare {
 
     @Test
-    public void givenDistanceAndTimeWhenCalculatedShouldReturrnTotalFare() {
-        FirstRide rideFare = new FirstRide();
-        double totalFare = rideFare.calculateFare(10,2);
+    public void givenDistanceAndTimeWhenCalculatedShouldReturnTotalFare() {
+        CabInvoiceGenerator cabInvoiceGenerator = new CabInvoiceGenerator();
+        double totalFare = cabInvoiceGenerator.calculateFare(10,2);
         Assert.assertEquals(102, totalFare);
     }
-
     @Test
     public void givenDistanceAndTimeWhenCalculatedShouldReturnMinimumRideFare() {
-        FirstRide minimumRideFare = new FirstRide();
-        double totalFare = minimumRideFare.calculateFare(0.2, 2);
-        Assert.assertEquals(5,totalFare);
-    
-	}
+        CabInvoiceGenerator cabInvoiceGenerator = new CabInvoiceGenerator();
+        double totalFare = cabInvoiceGenerator.calculateFare(0.2, 2);
+        Assert.assertEquals(5, totalFare);
+    }
+    @Test
+    public void givenMultipleRidesCalculatedShouldReturnRidesTotalFare() {
+        CabInvoiceGenerator cabInvoiceGenerator = new CabInvoiceGenerator();
+        Ride[] rides = {new Ride(10.0, 2.0),
+                        new Ride(5,2.0)
+                       };
+        double totalFare = cabInvoiceGenerator.calculateFare(rides);
+        Assert.assertEquals(154,totalFare);
+    }
 }

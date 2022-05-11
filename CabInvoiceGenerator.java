@@ -1,8 +1,8 @@
 package com.bridgelabz;
 
-public class FirstRide {
+public class CabInvoiceGenerator {
     public double calculateFare(double distance, double time) {
-        
+
         double totalFare = 10 * distance + 1 * time;
 
         if (totalFare > 5) {
@@ -10,5 +10,13 @@ public class FirstRide {
         } else {
             return totalFare = 5;
         }
+    }
+
+    public double calculateFare(Ride[] rides) {
+        double totalFare = 0;
+        for (Ride ride:rides) {
+            totalFare += this.calculateFare(ride.distance, ride.time);
+        }
+        return totalFare;
     }
 }
